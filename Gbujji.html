@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My B.J jaan💝</title>
+
+<style>
+body{
+ margin:0;
+ font-family:sans-serif;
+ background:black;
+ color:white;
+ text-align:center;
+ overflow-x:hidden;
+}
+
+/* LOCK */
+#lock{
+ position:fixed;
+ width:100%;
+ height:100%;
+ background:black;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+}
+input{
+ padding:10px;
+ border-radius:10px;
+ border:none;
+}
+button{
+ padding:10px 20px;
+ border:none;
+ border-radius:20px;
+ background:#ff4da6;
+ color:white;
+ margin-top:10px;
+}
+
+/* MAIN */
+#main{ display:none; }
+
+/* SLIDESHOW */
+img{
+ width:90%;
+ max-width:350px;
+ border-radius:15px;
+}
+
+/* CHAT */
+.chat{
+ max-width:300px;
+ margin:20px auto;
+ text-align:left;
+}
+.msg{
+ padding:10px;
+ margin:5px;
+ border-radius:10px;
+}
+.you{ background:#ff4da6; text-align:right; }
+.her{ background:#333; }
+
+/* TYPEWRITER BOX */
+#loveText{
+ padding:20px;
+ font-size:18px;
+ line-height:1.6;
+}
+
+/* HEART */
+.heart{
+ position:fixed;
+ bottom:0;
+ color:red;
+ animation:float 5s linear infinite;
+}
+@keyframes float{
+ to{ transform:translateY(-100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOCK -->
+<div id="lock">
+<h2>🔒 Only For My Bujji</h2>
+<input type="password" id="pass" placeholder="Enter Love Password">
+<button onclick="unlock()">Open ❤️</button>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+<h1>❤️ For my sweetheart ❤️</h1>
+
+<img id="slide" src="photo1.jpg">
+
+<h3 id="days"></h3>
+
+<!-- CHAT -->
+<div class="chat" id="chat"></div>
+
+<!-- AUTO LETTER -->
+<div id="loveText"></div>
+
+<button onclick="toggleMusic()">🎵 Music</button>
+
+</div>
+
+<audio id="music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+<script>
+
+/* PASSWORD */
+function unlock(){
+ let p=document.getElementById("pass").value;
+ if(p==="bujji936"){
+  document.getElementById("lock").style.display="none";
+  document.getElementById("main").style.display="block";
+  startAll();
+ } else alert("Wrong Password 😢");
+}
+
+/* START ALL */
+function startAll(){
+ typing();
+ showChat();
+}
+
+/* SLIDESHOW */
+let imgs=[
+"photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg",
+"photo6.jpg","photo7.jpg","photo8.jpg","photo9.jpg","photo10.jpg",
+"photo11.jpg","photo12.jpg","photo13.jpg","photo14.jpg","photo15.jpg"
+];
+let x=0;
+setInterval(()=>{
+ x=(x+1)%imgs.length;
+ document.getElementById("slide").src=imgs[x];
+},2000);
+
+/* DAYS */
+let start=new Date("2023-01-01"); // CHANGE DATE
+let now=new Date();
+let d=Math.floor((now-start)/(1000*60*60*24));
+document.getElementById("days").innerText="हम "+d+" दिनों से साथ हैं ❤️";
+
+/* CHAT */
+let chats=[
+"hello jaan ye meri dil ki baat hai  ❤️",
+"ये खास आपके लिए बनाया है मैंने 💖",
+"आज भी हम कितने अछे से रहते है  😍",
+"मै life time आपके साथ ऐसे ही रहना चाहता हु ",
+"I love you Bujji ❤️"
+];
+let c=0;
+function showChat(){
+ if(c<chats.length){
+  let div=document.createElement("div");
+  div.className="msg "+(c%2==0?"you":"her");
+  div.innerText=chats[c];
+  document.getElementById("chat").appendChild(div);
+  c++;
+  setTimeout(showChat,1500);
+ }
+}
+
+/* ADVANCED TYPING LETTER */
+let lines = [
+"Happy 3 Years Anniversary My Bujji ❤️",
+"",
+"आपके साथ ये 3 साल कैसे निकल गए, पता ही नहीं चला…",
+"हर दिन आपके साथ और खास बनता गया 💖",
+"",
+"हम दूर हैं… लेकिन कभी ऐसा महसूस नहीं हुआ कि आप दूर हो…",
+"क्योंकि आप हमेशा मेरे दिल के सबसे करीब हो ❤️",
+"",
+"Free Fire से शुरू हुई हमारी कहानी…",
+"आज मेरी पूरी दुनिया बन गई है 💕",
+"",
+"थोड़ी गलतफहमियां आई…",
+"लेकिन हमारा प्यार कभी कम नहीं हुआ ❤️",
+"",
+"मैं आज भी आपसे उतना ही प्यार करता हूँ…",
+"और हर दिन और ज्यादा करता जा रहा हूँ 💖",
+"",
+"मैं वादा करता हूँ…",
+"मैं हमेशा आपका साथ दूंगा…",
+"आपको कभी अकेला महसूस नहीं होने दूंगा ❤️",
+"",
+"I Love You My BJ Darling 💖"
+];
+
+let lineIndex = 0;
+let charIndex = 0;
+
+function typing() {
+ if(lineIndex < lines.length){
+  let line = lines[lineIndex];
+  if(charIndex < line.length){
+   document.getElementById("loveText").innerHTML += line.charAt(charIndex);
+   charIndex++;
+   setTimeout(typing,120);
+  } else {
+   document.getElementById("loveText").innerHTML += "<br/>";
+   lineIndex++;
+   charIndex=0;
+   setTimeout(typing,600);
+  }
+ }
+}
+
+/* MUSIC */
+let m = document.getElementById("music");
+
+function toggleMusic(){
+    m.play().then(()=>{
+        console.log("Music playing ❤️");
+    }).catch((err)=>{
+        alert("बस एक बार और click करो ❤️");
+    });
+}
+/* HEARTS */
+setInterval(()=>{
+ let h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="❤️";
+ h.style.left=Math.random()*100+"vw";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),5000);
+},300);
+
+</script>
+
+</body>
+</html>
